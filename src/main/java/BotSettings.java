@@ -27,7 +27,6 @@ public class BotSettings extends TelegramLongPollingBot {
         sendMessage.setChatId(message.getChatId().toString());
         sendMessage.setText(text);
         setButtons(sendMessage, chatId);
-
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -103,7 +102,6 @@ public class BotSettings extends TelegramLongPollingBot {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             try {
                 if (okHttpGet.run(ApiRequest.getCustomerByCustomerChatId(chatId)).isEmpty()) {
                     okHttpPost.post(ApiRequest.postCustomerChatIdAndPhoneNumber(), chatId, customerPhoneNumber);
