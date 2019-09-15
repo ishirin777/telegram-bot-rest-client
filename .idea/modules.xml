@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java-bot-ok-http-rest-client.iml" filepath="$PROJECT_DIR$/java-bot-ok-http-rest-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-telegram-bot-ok-http-rest-client.iml" filepath="$PROJECT_DIR$/demo-telegram-bot-ok-http-rest-client.iml" />
     </modules>
   </component>
 </project>

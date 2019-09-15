@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="java-bot-ok-http-rest-client" />
+        <module name="demo-telegram-bot-ok-http-rest-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="java-bot-ok-http-rest-client" target="11" />
+      <module name="demo-telegram-bot-ok-http-rest-client" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

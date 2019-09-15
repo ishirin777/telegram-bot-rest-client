@@ -21,7 +21,7 @@ public class BotSettings extends TelegramLongPollingBot {
     private final GsonBuilder gsonBuilder = new GsonBuilder();
     private final Gson gson = gsonBuilder.create();
 
-    public void sendMsg(Message message, String text, Long chatId) {
+    private void sendMsg(Message message, String text, Long chatId) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
@@ -60,7 +60,7 @@ public class BotSettings extends TelegramLongPollingBot {
                         e.printStackTrace();
                     }
                     break;
-                case "Hesablar":
+                case "💵" + " " + "Hesablar":
                     try {
                         String responseForCustomerPhoneNumber = okHttpGet.run(ApiRequest.getCustomerByCustomerChatId(chatId));
                         JSONObject json = new JSONObject(responseForCustomerPhoneNumber);
@@ -73,7 +73,7 @@ public class BotSettings extends TelegramLongPollingBot {
                         e.printStackTrace();
                     }
                     break;
-                case "Kreditlər":
+                case "💳" + " " + "Kreditlər":
                     try {
                         String responseForCustomerPhoneNumber = okHttpGet.run(ApiRequest.getCustomerByCustomerChatId(chatId));
                         JSONObject json = new JSONObject(responseForCustomerPhoneNumber);
@@ -120,7 +120,7 @@ public class BotSettings extends TelegramLongPollingBot {
         }
     }
 
-    public void setButtons(SendMessage sendMessage, Long chatId) {
+    private void setButtons(SendMessage sendMessage, Long chatId) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 
@@ -141,13 +141,13 @@ public class BotSettings extends TelegramLongPollingBot {
         assert responseForCustomerPhoneNumber != null;
         if (responseForCustomerPhoneNumber.isEmpty()) {
             KeyboardButton shareContactButton = new KeyboardButton();
-            shareContactButton.setText("Nömrəmi paylaş").setRequestContact(true);
+            shareContactButton.setText("\uD83D\uDCF1" + " " + "Nömrəmi paylaş").setRequestContact(true);
             keyboardFirstRow.add(shareContactButton);
         }
 
         if (!responseForCustomerPhoneNumber.isEmpty()) {
-            keyboardFirstRow.add(new KeyboardButton("Hesablar"));
-            keyboardFirstRow.add(new KeyboardButton("Kreditlər"));
+            keyboardFirstRow.add(new KeyboardButton("💵" + " " + "Hesablar"));
+            keyboardFirstRow.add(new KeyboardButton("💳" + " " + "Kreditlər"));
         }
 
         keyboardRowList.add(keyboardFirstRow);
