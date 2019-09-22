@@ -16,14 +16,4 @@ class ApiRequest {
 
         return host + "customerNameAndSurname/" + phone;
     }
-
-    static String getCustomerByCustomerChatId(Long customerChatId) {
-
-        return host + "customer/" + customerChatId;
-    }
-
-    static String postCustomerChatIdAndPhoneNumber() {
-
-        return host;
-    }
 }

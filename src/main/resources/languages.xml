@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language>
+    <az>
+        <PhoneNumber>
+            Nömrəmi paylaş
+        </PhoneNumber>
+
+        <WelcomeText>
+            Salam, %s %s.&#10;Siz artıq sistemə daxil oldunuz.&#10;Aşağıdakı menyudan öz hesablarınıza və kreditlərinizə baxa bilərsiniz.
+        </WelcomeText>
+
+        <AccountsViewName>
+            Hesablar
+        </AccountsViewName>
+
+        <AccountsProperties>
+            AZN-lə olan bütün məbləğlər: %d&#10;USD-lə olan bütün məbləğlər: %d&#10;EUR-la olan bütün məbləğlər: %d
+        </AccountsProperties>
+
+        <CreditsViewName>
+            Kreditlər
+        </CreditsViewName>
+
+        <CreditsProperties>
+            AZN-lə olan cəmi kreditlər: %d&#10;USD-lə olan cəmi kreditlər: %d
+        </CreditsProperties>
+
+        <NoResultsResponse>
+            Sorğunuz üzrə məlumat tapılmadı.
+        </NoResultsResponse>
+
+        <NoUserInformationAvailable>
+            Sizin məlumat bankın bazasında yoxdur.&#10;Zəhmət olmasa bank ilə əlaqə saxlayın.
+        </NoUserInformationAvailable>
+    </az>
+
+    <en>
+        <PhoneNumber>
+            Share my number
+        </PhoneNumber>
+
+        <WelcomeText>
+            Hello, %s %s.&#10;You have already accessed the system.&#10;You can view your accounts and credits in below menu.
+        </WelcomeText>
+
+        <AccountsViewName>
+            Accounts
+        </AccountsViewName>
+
+        <AccountsProperties>
+            Total amounts in AZN: %d&#10;Total amounts in USD: %d&#10;Total amounts in EUR: %d
+        </AccountsProperties>
+
+        <CreditsViewName>
+            Credits
+        </CreditsViewName>
+
+        <CreditsProperties>
+            Total credits in AZN: %d&#10;Total credits in USD: %d
+        </CreditsProperties>
+
+        <NoResultsResponse>
+            No results found for your request.
+        </NoResultsResponse>
+
+        <NoUserInformationAvailable>
+            Your information is not in the bank's database.&#10;Please contact the bank.
+        </NoUserInformationAvailable>
+    </en>
+
+    <ru>
+        <PhoneNumber>
+            Поделись моим номером
+        </PhoneNumber>
+
+        <WelcomeText>
+            Здравствуй, %s %s.&#10;Вы уже получили доступ к системе.&#10;Вы можете просмотреть свои счета и кредиты в меню ниже.
+        </WelcomeText>
+
+        <AccountsViewName>
+            Счеты
+        </AccountsViewName>
+
+        <AccountsProperties>
+            Общая сумма в манатах: %d&#10;Общая сумма в долларах США: %d&#10;Общая сумма в евро: %d
+        </AccountsProperties>
+
+        <CreditsViewName>
+            Кредиты
+        </CreditsViewName>
+
+        <CreditsProperties>
+            Всего кредитов в манатах: %d&#10;Всего кредитов в долларах США: %d
+        </CreditsProperties>
+
+        <NoResultsResponse>
+            По вашему запросу ничего не найдено.
+        </NoResultsResponse>
+
+        <NoUserInformationAvailable>
+            Ваша информация отсутствует в базе данных банка.&#10;Пожалуйста, свяжитесь с банком.
+        </NoUserInformationAvailable>
+    </ru>
+</language>
