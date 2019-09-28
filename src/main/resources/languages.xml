@@ -1,104 +1,224 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <language>
     <az>
-        <PhoneNumber>
+        <SharePhoneNumberText>
             Nömrəmi paylaş
-        </PhoneNumber>
+        </SharePhoneNumberText>
 
         <WelcomeText>
-            Salam, %s %s.&#10;Siz artıq sistemə daxil oldunuz.&#10;Aşağıdakı menyudan öz hesablarınıza və kreditlərinizə baxa bilərsiniz.
+            Xoş gəlmişsiniz, %s %s!&#10;Əməliyyatı seçin
         </WelcomeText>
 
-        <AccountsViewName>
+        <AccountsViewNameText>
             Hesablar
-        </AccountsViewName>
+        </AccountsViewNameText>
 
-        <AccountsProperties>
-            AZN-lə olan bütün məbləğlər: %d&#10;USD-lə olan bütün məbləğlər: %d&#10;EUR-la olan bütün məbləğlər: %d
-        </AccountsProperties>
+        <AccountsPropertiesAZNText>
+            AZN-lə olan bütün məbləğlər: %d ₼
+        </AccountsPropertiesAZNText>
 
-        <CreditsViewName>
+        <AccountsPropertiesUSDText>
+            USD-lə olan bütün məbləğlər: %d $
+        </AccountsPropertiesUSDText>
+
+        <AccountsPropertiesEURText>
+            EUR-la olan bütün məbləğlər: %d €
+        </AccountsPropertiesEURText>
+
+        <CreditsViewNameText>
             Kreditlər
-        </CreditsViewName>
+        </CreditsViewNameText>
 
-        <CreditsProperties>
-            AZN-lə olan cəmi kreditlər: %d&#10;USD-lə olan cəmi kreditlər: %d
-        </CreditsProperties>
+        <CreditsPropertiesAZNText>
+            AZN-lə olan cəmi kreditlər: %d ₼
+        </CreditsPropertiesAZNText>
 
-        <NoResultsResponse>
+        <CreditsPropertiesUSDText>
+            USD-lə olan cəmi kreditlər: %d $
+        </CreditsPropertiesUSDText>
+
+        <NoResultsResponseText>
             Sorğunuz üzrə məlumat tapılmadı.
-        </NoResultsResponse>
+        </NoResultsResponseText>
 
-        <NoUserInformationAvailable>
+        <NoUserInformationAvailableText>
             Sizin məlumat bankın bazasında yoxdur.&#10;Zəhmət olmasa bank ilə əlaqə saxlayın.
-        </NoUserInformationAvailable>
+        </NoUserInformationAvailableText>
+
+        <AccountsTypesText>
+            Hansı hesablarınıza baxmaq istərdiniz?
+        </AccountsTypesText>
+
+        <CreditsTypesText>
+            Hansı valyutada olan kreditlərinizə baxmaq istərdiniz?
+        </CreditsTypesText>
+
+        <CurrencyRatesText>
+            Valyuta məzənnələri
+        </CurrencyRatesText>
+
+        <CurrencyRates>
+            &#10;🇺🇸 USD&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
+
+            &#10;🇪🇺 EUR&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
+
+            &#10;🇬🇧 GBP&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
+
+            &#10;🇷🇺 RUB&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
+
+            &#10;🇹🇷 TRY&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
+        </CurrencyRates>
+
+        <BankNewsText>
+            Bank xəbərləri
+        </BankNewsText>
     </az>
 
     <en>
-        <PhoneNumber>
+        <SharePhoneNumberText>
             Share my number
-        </PhoneNumber>
+        </SharePhoneNumberText>
 
         <WelcomeText>
-            Hello, %s %s.&#10;You have already accessed the system.&#10;You can view your accounts and credits in below menu.
+            Welcome, %s %s!&#10;Select action
         </WelcomeText>
 
-        <AccountsViewName>
+        <AccountsViewNameText>
             Accounts
-        </AccountsViewName>
+        </AccountsViewNameText>
 
-        <AccountsProperties>
-            Total amounts in AZN: %d&#10;Total amounts in USD: %d&#10;Total amounts in EUR: %d
-        </AccountsProperties>
+        <AccountsPropertiesAZNText>
+            Total amounts in AZN: %d ₼
+        </AccountsPropertiesAZNText>
 
-        <CreditsViewName>
+        <AccountsPropertiesUSDText>
+            Total amounts in USD: %d $
+        </AccountsPropertiesUSDText>
+
+        <AccountsPropertiesEURText>
+            Total amounts in EUR: %d €
+        </AccountsPropertiesEURText>
+
+        <CreditsViewNameText>
             Credits
-        </CreditsViewName>
+        </CreditsViewNameText>
 
-        <CreditsProperties>
-            Total credits in AZN: %d&#10;Total credits in USD: %d
-        </CreditsProperties>
+        <CreditsPropertiesAZNText>
+            Total credits in AZN: %d ₼
+        </CreditsPropertiesAZNText>
 
-        <NoResultsResponse>
+        <CreditsPropertiesUSDText>
+            Total credits in USD: %d $
+        </CreditsPropertiesUSDText>
+
+        <NoResultsResponseText>
             No results found for your request.
-        </NoResultsResponse>
+        </NoResultsResponseText>
 
-        <NoUserInformationAvailable>
+        <NoUserInformationAvailableText>
             Your information is not in the bank's database.&#10;Please contact the bank.
-        </NoUserInformationAvailable>
+        </NoUserInformationAvailableText>
+
+        <AccountsTypesText>
+            Which accounts would you like to view?
+        </AccountsTypesText>
+
+        <CreditsTypesText>
+            Which loan types would you like to view?
+        </CreditsTypesText>
+
+        <CurrencyRatesText>
+            Currency rates
+        </CurrencyRatesText>
+
+        <CurrencyRates>
+            &#10;🇺🇸 USD&#10;Buy Rate: %s&#10;Sell Rate: %s
+
+            &#10;🇪🇺 EUR&#10;Buy Rate: %s&#10;Sell Rate: %s
+
+            &#10;🇬🇧 GBP&#10;Buy Rate: %s&#10;Sell Rate: %s
+
+            &#10;🇷🇺 RUB&#10;Buy Rate: %s&#10;Sell Rate: %s
+
+            &#10;🇹🇷 TRY&#10;Buy Rate: %s&#10;Sell Rate: %s
+        </CurrencyRates>
+
+        <BankNewsText>
+            Bank news
+        </BankNewsText>
     </en>
 
     <ru>
-        <PhoneNumber>
+        <SharePhoneNumberText>
             Поделись моим номером
-        </PhoneNumber>
+        </SharePhoneNumberText>
 
         <WelcomeText>
-            Здравствуй, %s %s.&#10;Вы уже получили доступ к системе.&#10;Вы можете просмотреть свои счета и кредиты в меню ниже.
+            Добро пожаловать, %s %s!&#10;Выберите действие
         </WelcomeText>
 
-        <AccountsViewName>
+        <AccountsViewNameText>
             Счеты
-        </AccountsViewName>
+        </AccountsViewNameText>
 
-        <AccountsProperties>
-            Общая сумма в манатах: %d&#10;Общая сумма в долларах США: %d&#10;Общая сумма в евро: %d
-        </AccountsProperties>
+        <AccountsPropertiesAZNText>
+            Общая сумма в манатах: %d ₼
+        </AccountsPropertiesAZNText>
 
-        <CreditsViewName>
+        <AccountsPropertiesUSDText>
+            Общая сумма в долларах США: %d $
+        </AccountsPropertiesUSDText>
+
+        <AccountsPropertiesEURText>
+            Общая сумма в евро: %d €
+        </AccountsPropertiesEURText>
+
+        <CreditsViewNameText>
             Кредиты
-        </CreditsViewName>
+        </CreditsViewNameText>
 
-        <CreditsProperties>
-            Всего кредитов в манатах: %d&#10;Всего кредитов в долларах США: %d
-        </CreditsProperties>
+        <CreditsPropertiesAZNText>
+            Всего кредитов в манатах: %d ₼
+        </CreditsPropertiesAZNText>
 
-        <NoResultsResponse>
+        <CreditsPropertiesUSDText>
+            Всего кредитов в долларах США: %d $
+        </CreditsPropertiesUSDText>
+
+        <NoResultsResponseText>
             По вашему запросу ничего не найдено.
-        </NoResultsResponse>
+        </NoResultsResponseText>
 
-        <NoUserInformationAvailable>
+        <NoUserInformationAvailableText>
             Ваша информация отсутствует в базе данных банка.&#10;Пожалуйста, свяжитесь с банком.
-        </NoUserInformationAvailable>
+        </NoUserInformationAvailableText>
+
+        <AccountsTypesText>
+            Какие аккаунты вы хотели бы просмотреть?
+        </AccountsTypesText>
+
+        <CreditsTypesText>
+            Какие типы кредитов вы хотели бы просмотреть?
+        </CreditsTypesText>
+
+        <CurrencyRatesText>
+            Курсы валют
+        </CurrencyRatesText>
+
+        <CurrencyRates>
+            &#10;🇺🇸 USD&#10;Покупка: %s&#10;Продажа: %s
+
+            &#10;🇪🇺 EUR&#10;Покупка: %s&#10;Продажа: %s
+
+            &#10;🇬🇧 GBP&#10;Покупка: %s&#10;Продажа: %s
+
+            &#10;🇷🇺 RUB&#10;Покупка: %s&#10;Продажа: %s
+
+            &#10;🇹🇷 TRY&#10;Покупка: %s&#10;Продажа: %s
+        </CurrencyRates>
+
+        <BankNewsText>
+            Новости банка
+        </BankNewsText>
     </ru>
 </language>
