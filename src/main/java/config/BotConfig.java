@@ -84,7 +84,6 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCB8 Hesablar":
                 case "\uD83D\uDCB8 Accounts":
                 case "\uD83D\uDCB8 Счеты":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
                     session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
                     langObjects = new LanguageElement(langType.getLangType());
                     sendMsg(message, langObjects.accountsTypesText, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), MessageType.ACCOUNTS);
@@ -93,7 +92,6 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCB3 Kreditlər":
                 case "\uD83D\uDCB3 Credits":
                 case "\uD83D\uDCB3 Кредиты":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
                     session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
                     langObjects = new LanguageElement(langType.getLangType());
                     sendMsg(message, langObjects.creditsTypesText, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), MessageType.CREDITS);
@@ -102,20 +100,19 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCC8 Valyuta məzənnələri":
                 case "\uD83D\uDCC8 Currency rates":
                 case "\uD83D\uDCC8 Курсы валют":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
                     session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
                     sendMsg(message, CurrencyRates.getCurrencyRates(langType.getLangType()), true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), MessageType.NULL);
                     break;
 
-                case "\uD83D\uDCF0 Bank xəbərləri":
-                case "\uD83D\uDCF0 Bank news":
-                case "\uD83D\uDCF0 Новости банка":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                case "\u2699 Tənzimləmələr":
+                case "\u2699 Settings":
+                case "\u2699 Настройки":
                     session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
                     break;
 
                 default:
                     try {
+                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
                         langObjects = new LanguageElement(langType.getLangType());
                         sendMsg(message, langObjects.noResultsResponseText, !langType.getLangType().isEmpty(), langType.getLangType(), null, MessageType.NULL);
                     } catch (Exception e) {

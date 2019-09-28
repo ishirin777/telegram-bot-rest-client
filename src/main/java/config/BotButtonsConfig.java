@@ -44,10 +44,11 @@ class BotButtonsConfig{
 
 
         } else {
-            keyboardFirstRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
-            keyboardFirstRow.add(new KeyboardButton("\uD83D\uDCB3 " + languageElement.creditsViewNameText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCF0 " + languageElement.bankNewsText.trim()));
+
+            keyboardFirstRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
+            keyboardFirstRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB3 " + languageElement.creditsViewNameText.trim()));
             keyboardRowList.add(keyboardSecondRow);
 
             BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();

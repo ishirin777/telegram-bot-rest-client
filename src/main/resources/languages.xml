@@ -69,9 +69,9 @@
             &#10;🇹🇷 TRY&#10;Alış məzənnəsi: %s&#10;Satış məzənnəsi: %s
         </CurrencyRates>
 
-        <BankNewsText>
-            Bank xəbərləri
-        </BankNewsText>
+        <GeneralSettings>
+            Tənzimləmələr
+        </GeneralSettings>
     </az>
 
     <en>
@@ -143,9 +143,9 @@
             &#10;🇹🇷 TRY&#10;Buy Rate: %s&#10;Sell Rate: %s
         </CurrencyRates>
 
-        <BankNewsText>
-            Bank news
-        </BankNewsText>
+        <GeneralSettings>
+            Settings
+        </GeneralSettings>
     </en>
 
     <ru>
@@ -217,8 +217,8 @@
             &#10;🇹🇷 TRY&#10;Покупка: %s&#10;Продажа: %s
         </CurrencyRates>
 
-        <BankNewsText>
-            Новости банка
-        </BankNewsText>
+        <GeneralSettings>
+            Настройки
+        </GeneralSettings>
     </ru>
 </language>

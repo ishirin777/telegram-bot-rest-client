@@ -29,7 +29,7 @@ public class LanguageElement {
     public String creditsTypesText;
     public String currencyRatesText;
     public String currencyRates;
-    public String bankNewsText;
+    public String generalSettings;
 
     public LanguageElement(String lang) {
         try {
@@ -47,7 +47,7 @@ public class LanguageElement {
             accountsTypesText = getValue("AccountsTypesText", xmlParser(lang));
             creditsTypesText = getValue("CreditsTypesText", xmlParser(lang));
             currencyRatesText = getValue("CurrencyRatesText", xmlParser(lang));
-            bankNewsText = getValue("BankNewsText", xmlParser(lang));
+            generalSettings = getValue("GeneralSettings", xmlParser(lang));
             currencyRates = getValue("CurrencyRates", xmlParser(lang));
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
