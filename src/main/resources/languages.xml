@@ -72,6 +72,31 @@
         <GeneralSettings>
             Tənzimləmələr
         </GeneralSettings>
+
+        <LanguageText>
+            Dil
+        </LanguageText>
+
+        <ContactTheBank>
+            Bankla əlaqə
+        </ContactTheBank>
+
+        <SelectAction>
+            Əməliyyatı seçin
+        </SelectAction>
+
+        <BackFunction>
+            Geri
+        </BackFunction>
+
+        <ChooseTheLanguage>
+            Dili seçin
+        </ChooseTheLanguage>
+
+        <BankPhoneNumbers>
+            &#10;Korporativ müştərilər üçün:&#10;*8123 / (+994 12) 496 50 04
+            &#10;Fərdi müştərilər üçün:&#10;*9123 / (+99 412) 496 50 00
+        </BankPhoneNumbers>
     </az>
 
     <en>
@@ -146,6 +171,31 @@
         <GeneralSettings>
             Settings
         </GeneralSettings>
+
+        <LanguageText>
+            Language
+        </LanguageText>
+
+        <ContactTheBank>
+            Contact the bank
+        </ContactTheBank>
+
+        <SelectAction>
+            Select action
+        </SelectAction>
+
+        <BackFunction>
+            Back
+        </BackFunction>
+
+        <ChooseTheLanguage>
+            Choose the language
+        </ChooseTheLanguage>
+
+        <BankPhoneNumbers>
+            &#10;For Corporate Customers:&#10;*8123 / (+99 12) 496 50 04
+            &#10;For Individual Customers:&#10;*9123 / (+99 412) 496 50 00
+        </BankPhoneNumbers>
     </en>
 
     <ru>
@@ -220,5 +270,30 @@
         <GeneralSettings>
             Настройки
         </GeneralSettings>
+
+        <LanguageText>
+            Язык
+        </LanguageText>
+
+        <ContactTheBank>
+            Связаться с банком
+        </ContactTheBank>
+
+        <SelectAction>
+            Выберите действие
+        </SelectAction>
+
+        <BackFunction>
+            Назад
+        </BackFunction>
+
+        <ChooseTheLanguage>
+            Выберите язык
+        </ChooseTheLanguage>
+
+        <BankPhoneNumbers>
+            &#10;Для корпоративных клиентов:&#10;*8123 / (+994 12) 496 50 04
+            &#10;Для индивидуальных клиентов:&#10;*9123 / (+99 412) 496 50 00
+        </BankPhoneNumbers>
     </ru>
 </language>

@@ -9,9 +9,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import java.util.ArrayList;
 import java.util.List;
 
-class BotButtonsConfig{
+class BotButtonsConfig {
 
-    static void setButtons(SendMessage sendMessage, boolean langSelected, String lang, String phoneNum, BotConfig.MessageType MessageType){
+    static void setButtons(SendMessage sendMessage, boolean langSelected, String lang, String phoneNum, BotConfig.ButtonsType ButtonsType) {
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup()
                 .setSelective(true)
@@ -48,20 +48,24 @@ class BotButtonsConfig{
             keyboardFirstRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
             keyboardFirstRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
             keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB3 " + languageElement.creditsViewNameText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCBC " + languageElement.creditsViewNameText.trim()));
             keyboardRowList.add(keyboardSecondRow);
 
             BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();
 
-            switch (MessageType) {
+            switch (ButtonsType) {
                 case ACCOUNTS:
                     botInlineButtonsConfig.inlineKeyboardForCustomerAccounts(sendMessage);
                     break;
                 case CREDITS:
                     botInlineButtonsConfig.inlineKeyboardForCustomerCredits(sendMessage);
                     break;
-                case CURRENCY_RATES:
-                    botInlineButtonsConfig.inlineKeyboardForCurrencyRates(sendMessage);
+                case SETTINGS:
+                    keyboardFirstRow.removeAll(keyboardFirstRow);
+                    keyboardSecondRow.removeAll(keyboardSecondRow);
+                    keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
+                    keyboardSecondRow.add(new KeyboardButton("\uD83C\uDF0D " + languageElement.languageText.trim()));
+                    keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
                     break;
                 default:
                     break;

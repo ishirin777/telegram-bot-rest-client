@@ -23,13 +23,19 @@ public class LanguageElement {
     public String accountsPropertiesEURText;
     public String creditsPropertiesAZNText;
     public String creditsPropertiesUSDText;
-    public String noResultsResponseText;
+//    public String noResultsResponseText;
     public String noUserInformationAvailableText;
     public String accountsTypesText;
     public String creditsTypesText;
     public String currencyRatesText;
     public String currencyRates;
     public String generalSettings;
+    public String languageText;
+    public String contactTheBank;
+    public String selectAction;
+    public String backFunction;
+    public String chooseTheLanguage;
+    public String bankPhoneNumbers;
 
     public LanguageElement(String lang) {
         try {
@@ -42,13 +48,19 @@ public class LanguageElement {
             accountsPropertiesEURText = getValue("AccountsPropertiesEURText", xmlParser(lang));
             creditsPropertiesAZNText = getValue("CreditsPropertiesAZNText", xmlParser(lang));
             creditsPropertiesUSDText = getValue("CreditsPropertiesUSDText", xmlParser(lang));
-            noResultsResponseText = getValue("NoResultsResponseText", xmlParser(lang));
+//            noResultsResponseText = getValue("NoResultsResponseText", xmlParser(lang));
             noUserInformationAvailableText = getValue("NoUserInformationAvailableText", xmlParser(lang));
             accountsTypesText = getValue("AccountsTypesText", xmlParser(lang));
             creditsTypesText = getValue("CreditsTypesText", xmlParser(lang));
             currencyRatesText = getValue("CurrencyRatesText", xmlParser(lang));
             generalSettings = getValue("GeneralSettings", xmlParser(lang));
             currencyRates = getValue("CurrencyRates", xmlParser(lang));
+            languageText = getValue("LanguageText", xmlParser(lang));
+            contactTheBank = getValue("ContactTheBank", xmlParser(lang));
+            selectAction = getValue("SelectAction",xmlParser(lang));
+            backFunction = getValue("BackFunction", xmlParser(lang));
+            chooseTheLanguage = getValue("ChooseTheLanguage", xmlParser(lang));
+            bankPhoneNumbers = getValue("BankPhoneNumbers", xmlParser(lang));
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }

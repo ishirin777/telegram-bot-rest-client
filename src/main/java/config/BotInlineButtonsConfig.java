@@ -21,12 +21,6 @@ class BotInlineButtonsConfig {
         sendMessage.setReplyMarkup(markupInline);
     }
 
-    void inlineKeyboardForCurrencyRates(SendMessage sendMessage){
-        rowInline.add(new InlineKeyboardButton().setText("Wait").setCallbackData("Wait"));
-        markupInline.setKeyboard(Collections.singletonList(rowInline));
-        sendMessage.setReplyMarkup(markupInline);
-    }
-
     void inlineKeyboardForCustomerCredits(SendMessage sendMessage) {
         rowInline.add(new InlineKeyboardButton().setText("AZN").setCallbackData("AZN_Credits"));
         rowInline.add(new InlineKeyboardButton().setText("USD").setCallbackData("USD_Credits"));
