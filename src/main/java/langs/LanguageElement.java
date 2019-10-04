@@ -14,7 +14,9 @@ import java.io.IOException;
 
 public class LanguageElement {
 
+    public String startText = "Paşa Bank bot-a xoş gəlmişsiniz!\nDavam etmək üçün müvafiq dili seçin. \uD83D\uDE0A";
     public String sharePhoneNumberText;
+    public String authenticationText;
     public String accountsViewNameText;
     public String creditsViewNameText;
     public String welcomeText;
@@ -23,7 +25,6 @@ public class LanguageElement {
     public String accountsPropertiesEURText;
     public String creditsPropertiesAZNText;
     public String creditsPropertiesUSDText;
-//    public String noResultsResponseText;
     public String noUserInformationAvailableText;
     public String accountsTypesText;
     public String creditsTypesText;
@@ -40,6 +41,7 @@ public class LanguageElement {
     public LanguageElement(String lang) {
         try {
             sharePhoneNumberText = getValue("SharePhoneNumberText", xmlParser(lang));
+            authenticationText = getValue("AuthenticationText", xmlParser(lang));
             accountsViewNameText = getValue("AccountsViewNameText", xmlParser(lang));
             creditsViewNameText = getValue("CreditsViewNameText", xmlParser(lang));
             welcomeText = getValue("WelcomeText", xmlParser(lang));
@@ -48,7 +50,6 @@ public class LanguageElement {
             accountsPropertiesEURText = getValue("AccountsPropertiesEURText", xmlParser(lang));
             creditsPropertiesAZNText = getValue("CreditsPropertiesAZNText", xmlParser(lang));
             creditsPropertiesUSDText = getValue("CreditsPropertiesUSDText", xmlParser(lang));
-//            noResultsResponseText = getValue("NoResultsResponseText", xmlParser(lang));
             noUserInformationAvailableText = getValue("NoUserInformationAvailableText", xmlParser(lang));
             accountsTypesText = getValue("AccountsTypesText", xmlParser(lang));
             creditsTypesText = getValue("CreditsTypesText", xmlParser(lang));
@@ -57,7 +58,7 @@ public class LanguageElement {
             currencyRates = getValue("CurrencyRates", xmlParser(lang));
             languageText = getValue("LanguageText", xmlParser(lang));
             contactTheBank = getValue("ContactTheBank", xmlParser(lang));
-            selectAction = getValue("SelectAction",xmlParser(lang));
+            selectAction = getValue("SelectAction", xmlParser(lang));
             backFunction = getValue("BackFunction", xmlParser(lang));
             chooseTheLanguage = getValue("ChooseTheLanguage", xmlParser(lang));
             bankPhoneNumbers = getValue("BankPhoneNumbers", xmlParser(lang));

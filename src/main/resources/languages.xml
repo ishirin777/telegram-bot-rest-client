@@ -2,15 +2,19 @@
 <language>
     <az>
         <SharePhoneNumberText>
-            Nömrəmi paylaş
+            Daxil ol
         </SharePhoneNumberText>
+
+        <AuthenticationText>
+            Paşa Bank bot-a xoş gəlmişsiniz!&#10;Əməliyyatı seçin.
+        </AuthenticationText>
 
         <WelcomeText>
             Xoş gəlmişsiniz, %s %s!&#10;Əməliyyatı seçin
         </WelcomeText>
 
         <AccountsViewNameText>
-            Hesablar
+            Hesablarım
         </AccountsViewNameText>
 
         <AccountsPropertiesAZNText>
@@ -26,7 +30,7 @@
         </AccountsPropertiesEURText>
 
         <CreditsViewNameText>
-            Kreditlər
+            Kreditlərim
         </CreditsViewNameText>
 
         <CreditsPropertiesAZNText>
@@ -36,10 +40,6 @@
         <CreditsPropertiesUSDText>
             USD-lə olan cəmi kreditlər: %d $
         </CreditsPropertiesUSDText>
-
-        <NoResultsResponseText>
-            Sorğunuz üzrə məlumat tapılmadı.
-        </NoResultsResponseText>
 
         <NoUserInformationAvailableText>
             Sizin məlumat bankın bazasında yoxdur.&#10;Zəhmət olmasa bank ilə əlaqə saxlayın.
@@ -94,22 +94,26 @@
         </ChooseTheLanguage>
 
         <BankPhoneNumbers>
-            &#10;Korporativ müştərilər üçün:&#10;*8123 / (+994 12) 496 50 04
-            &#10;Fərdi müştərilər üçün:&#10;*9123 / (+99 412) 496 50 00
+            &#10;Korporativ müştərilər üçün:&#10;8123 / (+994 12) 496 50 04
+            &#10;Fərdi müştərilər üçün:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
     </az>
 
     <en>
         <SharePhoneNumberText>
-            Share my number
+            Login
         </SharePhoneNumberText>
+
+        <AuthenticationText>
+            Welcome to Pasha Bank bot.&#10;Select action.
+        </AuthenticationText>
 
         <WelcomeText>
             Welcome, %s %s!&#10;Select action
         </WelcomeText>
 
         <AccountsViewNameText>
-            Accounts
+            My Accounts
         </AccountsViewNameText>
 
         <AccountsPropertiesAZNText>
@@ -125,7 +129,7 @@
         </AccountsPropertiesEURText>
 
         <CreditsViewNameText>
-            Credits
+            My Credits
         </CreditsViewNameText>
 
         <CreditsPropertiesAZNText>
@@ -135,10 +139,6 @@
         <CreditsPropertiesUSDText>
             Total credits in USD: %d $
         </CreditsPropertiesUSDText>
-
-        <NoResultsResponseText>
-            No results found for your request.
-        </NoResultsResponseText>
 
         <NoUserInformationAvailableText>
             Your information is not in the bank's database.&#10;Please contact the bank.
@@ -193,22 +193,26 @@
         </ChooseTheLanguage>
 
         <BankPhoneNumbers>
-            &#10;For Corporate Customers:&#10;*8123 / (+99 12) 496 50 04
-            &#10;For Individual Customers:&#10;*9123 / (+99 412) 496 50 00
+            &#10;For Corporate Customers:&#10;8123 / (+994 12) 496 50 04
+            &#10;For Individual Customers:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
     </en>
 
     <ru>
         <SharePhoneNumberText>
-            Поделись моим номером
+            Логин
         </SharePhoneNumberText>
+
+        <AuthenticationText>
+            Добро пожаловать в бот Pasha Bank!&#10;Выберите действие
+        </AuthenticationText>
 
         <WelcomeText>
             Добро пожаловать, %s %s!&#10;Выберите действие
         </WelcomeText>
 
         <AccountsViewNameText>
-            Счеты
+            Мои Счета
         </AccountsViewNameText>
 
         <AccountsPropertiesAZNText>
@@ -224,7 +228,7 @@
         </AccountsPropertiesEURText>
 
         <CreditsViewNameText>
-            Кредиты
+            Мои Кредиты
         </CreditsViewNameText>
 
         <CreditsPropertiesAZNText>
@@ -234,10 +238,6 @@
         <CreditsPropertiesUSDText>
             Всего кредитов в долларах США: %d $
         </CreditsPropertiesUSDText>
-
-        <NoResultsResponseText>
-            По вашему запросу ничего не найдено.
-        </NoResultsResponseText>
 
         <NoUserInformationAvailableText>
             Ваша информация отсутствует в базе данных банка.&#10;Пожалуйста, свяжитесь с банком.
@@ -292,8 +292,8 @@
         </ChooseTheLanguage>
 
         <BankPhoneNumbers>
-            &#10;Для корпоративных клиентов:&#10;*8123 / (+994 12) 496 50 04
-            &#10;Для индивидуальных клиентов:&#10;*9123 / (+99 412) 496 50 00
+            &#10;Для корпоративных клиентов:&#10;8123 / (+994 12) 496 50 04
+            &#10;Для индивидуальных клиентов:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
     </ru>
 </language>

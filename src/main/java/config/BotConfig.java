@@ -6,12 +6,15 @@ import auth.SessionPhoneNumber;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import database.CurrencyRates;
+import database.CustomerAccounts;
 import database.CustomerCreditsAmount;
 import database.CustomerInfo;
 import langs.Key;
 import langs.LanguageElement;
 import langs.Value;
 import org.apache.shiro.session.Session;
+import org.telegram.telegrambots.meta.api.methods.ActionType;
+import org.telegram.telegrambots.meta.api.methods.send.SendChatAction;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -23,6 +26,7 @@ import starter.Main;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class BotConfig extends TelegramLongPollingSessionBot {
@@ -33,13 +37,12 @@ public class BotConfig extends TelegramLongPollingSessionBot {
     private final Key key = new Key("lang");
     private Value langType;
     private final Key phoneStoreKey = new Key("phoneKey");
-    private SessionPhoneNumber sessionPhoneNumber = new SessionPhoneNumber();
 
     public enum ButtonsType {
         NULL,
         ACCOUNTS,
         CREDITS,
-        SETTINGS
+        SETTINGS,
     }
 
     private void sendMsg(Message message, String text, boolean langSelected, String lang, String phoneNum, ButtonsType buttonsType) {
@@ -63,194 +66,218 @@ public class BotConfig extends TelegramLongPollingSessionBot {
             switch (message.getText()) {
                 case "\ud83c\udde6\ud83c\uddff Azərbaycan dili":
                     session.ifPresent(value -> value.setAttribute(key, new Value("az")));
-                    sendMsg(message, "Sistemə daxil olmaq üçün «nömrəmi paylaş» düyməsinə klikləyin.", true, "az", null, ButtonsType.NULL);
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+
+                    langElements = new LanguageElement(langType.getLangType());
+                    sendChatAction(update);
+                    sendMsg(message, langElements.authenticationText, true, "az", null, ButtonsType.NULL);
                     break;
 
                 case "\ud83c\uddec\ud83c\udde7 English":
                     session.ifPresent(value -> value.setAttribute(key, new Value("en")));
-                    sendMsg(message, "To access the system, click the «share my number» button below.", true, "en", null, ButtonsType.NULL);
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+
+                    langElements = new LanguageElement(langType.getLangType());
+                    sendChatAction(update);
+                    sendMsg(message, langElements.authenticationText, true, "en", null, ButtonsType.NULL);
                     break;
 
                 case "\ud83c\uddf7\ud83c\uddfa Русский":
                     session.ifPresent(value -> value.setAttribute(key, new Value("ru")));
-                    sendMsg(message, "Чтобы получить доступ к системе, нажмите кнопку «поделиться своим номером» ниже.", true, "ru", null, ButtonsType.NULL);
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+
+                    langElements = new LanguageElement(langType.getLangType());
+                    sendChatAction(update);
+                    sendMsg(message, langElements.authenticationText, true, "ru", null, ButtonsType.NULL);
                     break;
 
                 case "/start":
-                    sendMsg(message, "Paşa Bank bot-a xoş gəlmisiniz!\n" + "Davam etmək üçün müvafiq dili seçin. \uD83D\uDE42", false, null, null, ButtonsType.NULL);
+                    var sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
+                    try {
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                        if (sessionPhoneNumber.get().getPhoneNumber() != null) {
+                            sessionPhoneNumber.get().setPhoneNumber(null);
+                        }
+                    } catch (NullPointerException ignored) {
+                    }
+
+                    langElements = new LanguageElement("az");
+                    sendChatAction(update);
+                    sendMsg(message, langElements.startText, false, null, null, ButtonsType.NULL);
                     break;
 
-                case "\uD83D\uDCB8 Hesablar":
-                case "\uD83D\uDCB8 Accounts":
-                case "\uD83D\uDCB8 Счеты":
+                case "\uD83D\uDCB8 Hesablarım":
+                case "\uD83D\uDCB8 My Accounts":
+                case "\uD83D\uDCB8 Мои Счета":
+
+                    sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
                     langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.accountsTypesText, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.ACCOUNTS);
+                    sendChatAction(update);
+                    sendMsg(message, langElements.accountsTypesText, true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.ACCOUNTS);
                     break;
 
-                case "\uD83D\uDCBC Kreditlər":
-                case "\uD83D\uDCBC Credits":
-                case "\uD83D\uDCBC Кредиты":
+                case "\uD83D\uDCBC Kreditlərim":
+                case "\uD83D\uDCBC My Credits":
+                case "\uD83D\uDCBC Мои Кредиты":
+
+                    sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
-
-                    System.out.println(sessionPhoneNumber.getPhoneNumber());
-
-
+                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
                     langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.creditsTypesText, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.CREDITS);
+                    sendChatAction(update);
+                    sendMsg(message, langElements.creditsTypesText.trim(), true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.CREDITS);
                     break;
 
                 case "\uD83D\uDCC8 Valyuta məzənnələri":
                 case "\uD83D\uDCC8 Currency rates":
                 case "\uD83D\uDCC8 Курсы валют":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
 
-                    sendMsg(message, CurrencyRates.getCurrencyRates(langType.getLangType()), true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.NULL);
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    sendChatAction(update);
+                    sendMsg(message, CurrencyRates.getCurrencyRates(langType.getLangType()), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
                 case "\u2699 Tənzimləmələr":
                 case "\u2699 Settings":
                 case "\u2699 Настройки":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
 
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
                     langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.selectAction, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.SETTINGS);
+                    sendChatAction(update);
+                    sendMsg(message, langElements.selectAction, true, langType.getLangType(), null, ButtonsType.SETTINGS);
                     break;
 
                 case "\uD83C\uDF0D Dil":
                 case "\uD83C\uDF0D Language":
                 case "\uD83C\uDF0D Язык":
+
                     session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
-
                     langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.chooseTheLanguage, false, null, null, ButtonsType.NULL);
-                    break;
-
-                case "\uD83D\uDD19 Geri":
-                case "\uD83D\uDD19 Back":
-                case "\uD83D\uDD19 Назад":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
-
-                    langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.selectAction, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.NULL);
+                    sendChatAction(update);
+                    sendMsg(message, langElements.chooseTheLanguage, false, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
                 case "\uD83D\uDCDE Bankla əlaqə":
                 case "\uD83D\uDCDE Contact the bank":
                 case "\uD83D\uDCDE Связаться с банком":
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
 
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
                     langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.SETTINGS);
+                    sendChatAction(update);
+                    sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), null, ButtonsType.SETTINGS);
+                    break;
+
+                case "\uD83D\uDD19 Geri":
+                case "\uD83D\uDD19 Back":
+                case "\uD83D\uDD19 Назад":
+
+                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    langElements = new LanguageElement(langType.getLangType());
+                    sendChatAction(update);
+                    sendMsg(message, langElements.backFunction.trim(), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
                 default:
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-//                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
-                    langElements = new LanguageElement(langType.getLangType());
-                    sendMsg(message, langElements.selectAction, true, langType.getLangType(), null, ButtonsType.NULL);
+                    sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
+                    try {
+                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        sendChatAction(update);
+
+                        if (langType == null) {
+                            langElements = new LanguageElement("az");
+                            sendMsg(message, langElements.selectAction, false, "az", null, ButtonsType.NULL);
+                        } else if (langType.getLangType() != null) {
+                            langElements = new LanguageElement(langType.getLangType());
+                            sendMsg(message, langElements.selectAction, true, langType.getLangType(), null, ButtonsType.NULL);
+
+                        } else if (sessionPhoneNumber.get().getPhoneNumber() == null) {
+                            langElements = new LanguageElement(langType.getLangType());
+                            sendMsg(message, langElements.selectAction, false, langType.getLangType(), null, ButtonsType.NULL);
+
+                        } else {
+                            langElements = new LanguageElement(langType.getLangType());
+                            sendMsg(message, langElements.selectAction, true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.NULL);
+                        }
+                    } catch (NullPointerException ignored) {
+                    }
                     break;
             }
-        }
-
-       /* if (update.hasChannelPost()) {
-            Message channelMessage = update.getChannelPost();
-            String getChannelMessage = update.getChannelPost().getText();
-            System.out.println(getChannelMessage);
-            sendMsg(channelMessage, getChannelMessage, true, langType.getLangType(), sessionPhoneNumber.getPhoneNumber(), ButtonsType.NULL);
-        } */
-
-        else if (update.hasCallbackQuery()) {
+        } else if (update.hasCallbackQuery()) {
             String call_data = update.getCallbackQuery().getData();
             long message_id = update.getCallbackQuery().getMessage().getMessageId();
             long chat_id = update.getCallbackQuery().getMessage().getChatId();
-            EditMessageText new_message;
+            EditMessageText callbackMessage;
+            AtomicReference<SessionPhoneNumber> sessionPhoneNumber;
 
             switch (call_data) {
-                    /*  case "AZN_Account":
+                case "AZN_Account":
                     try {
-                  session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                        sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
+                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
 
-
-                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber);
-                        new_message = editMessageText(chat_id, message_id, answer.getAZNAccountsFromDB(langType.getLangType()));
-
-                        execute(new_message);
+                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
+                        callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getAZNAccountsFromDB(langType.getLangType()));
+                        execute(callbackMessage);
                     } catch (IOException | TelegramApiException e) {
                         e.printStackTrace();
                     }
                     break;
-                   */
-                /* case "USD_Account":
 
+                case "USD_Account":
                     try {
-
+                        sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                         session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
 
-                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber);
-                        new_message = editMessageText(chat_id, message_id, answer.getUSDAccountsFromDB(langType.getLangType()));
-                        execute(new_message);
+                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
+                        callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getUSDAccountsFromDB(langType.getLangType()));
+                        execute(callbackMessage);
                     } catch (IOException | TelegramApiException e) {
                         e.printStackTrace();
                     }
-                    break; */
+                    break;
 
-               /* case "EUR_Account":
+                case "EUR_Account":
                     try {
+                        sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                         session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
 
-                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber);
-                        new_message = editMessageText(chat_id, message_id, answer.getEURAccountsFromDB(langType.getLangType()));
-                        execute(new_message);
+                        CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
+                        callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getEURAccountsFromDB(langType.getLangType()));
+                        execute(callbackMessage);
                     } catch (IOException | TelegramApiException e) {
                         e.printStackTrace();
                     }
-                    break; */
-
+                    break;
 
                 case "AZN_Credits":
                     try {
-
+                        sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                         session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
 
-
-                        System.out.println(sessionPhoneNumber.getPhoneNumber());
-
-                        CallBackResponse callBackResponse = new CallBackResponse();
-
-
-                        CustomerCreditsAmount answer = callBackResponse.customerCreditsAmountDB(sessionPhoneNumber);
-                        new_message = callBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInAZN(langType.getLangType()));
-                        execute(new_message);
+                        CustomerCreditsAmount answer = CallBackResponse.customerCreditsAmountDB(sessionPhoneNumber.get());
+                        callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInAZN(langType.getLangType()));
+                        execute(callbackMessage);
                     } catch (IOException | TelegramApiException e) {
                         e.printStackTrace();
                     }
                     break;
                 case "USD_Credits":
                     try {
-
+                        sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                         session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber = (SessionPhoneNumber) value.getAttribute(phoneStoreKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
 
-                        System.out.println(sessionPhoneNumber.getPhoneNumber());
-
-                        CallBackResponse callBackResponse = new CallBackResponse();
-
-
-                        CustomerCreditsAmount answer = callBackResponse.customerCreditsAmountDB(sessionPhoneNumber);
-                        new_message = callBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInUSD(langType.getLangType()));
-                        execute(new_message);
+                        CustomerCreditsAmount answer = CallBackResponse.customerCreditsAmountDB(sessionPhoneNumber.get());
+                        callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInUSD(langType.getLangType()));
+                        execute(callbackMessage);
                     } catch (IOException | TelegramApiException e) {
                         e.printStackTrace();
                     }
@@ -263,18 +290,24 @@ public class BotConfig extends TelegramLongPollingSessionBot {
             String customerPhoneNumber = update.getMessage().getContact().getPhoneNumber();
             customerPhoneNumber = customerPhoneNumber.contains("+") ? customerPhoneNumber.substring(1) : customerPhoneNumber;
 
+            var sessionPhoneNumber = new SessionPhoneNumber();
             sessionPhoneNumber.setPhoneNumber(customerPhoneNumber);
             session.ifPresent(value -> value.setAttribute(phoneStoreKey, sessionPhoneNumber));
             session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+
             langElements = new LanguageElement(langType.getLangType());
+            sendChatAction(update);
             try {
                 if (okHttpGet.run(ApiRequest.getCustomerNameAndSurname(customerPhoneNumber)).isEmpty()) {
-                    sendMsg(Objects.requireNonNull(message), langElements.noUserInformationAvailableText, false, null, customerPhoneNumber, ButtonsType.NULL);
+                    if (sessionPhoneNumber.getPhoneNumber() != null) {
+                        sessionPhoneNumber.setPhoneNumber(null);
+                    }
+                    sendMsg(Objects.requireNonNull(message), langElements.noUserInformationAvailableText, false, null, null, ButtonsType.NULL);
                     return;
                 }
-
                 String response = okHttpGet.run(ApiRequest.getCustomerNameAndSurname(customerPhoneNumber));
                 CustomerInfo customerNameAndSurname = gson.fromJson(response, CustomerInfo.class);
+
                 sendMsg(Objects.requireNonNull(message), String.format(langElements.welcomeText.trim(),
                         customerNameAndSurname.getCustomerName(), customerNameAndSurname.getCustomerSurname())
                         , true, langType.getLangType(), customerPhoneNumber, ButtonsType.NULL);
@@ -296,5 +329,17 @@ public class BotConfig extends TelegramLongPollingSessionBot {
 
     public String getBotToken() {
         return Main.BOT_TOKEN;
+    }
+
+    private void sendChatAction(Update update) {
+        SendChatAction sendChatAction = new SendChatAction();
+        try {
+            sendChatAction.setChatId(update.getMessage().getChatId());
+            sendChatAction.setAction(ActionType.TYPING);
+            execute(sendChatAction);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (NullPointerException ignored) {
+        }
     }
 }

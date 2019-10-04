@@ -37,21 +37,32 @@ class BotButtonsConfig {
             return;
         }
         LanguageElement languageElement = new LanguageElement(lang);
+
+
         if (phoneNum == null) {
+
             KeyboardButton shareContactButton = new KeyboardButton().setText("\uD83D\uDCF1 " + languageElement.sharePhoneNumberText.trim())
                     .setRequestContact(true);
             keyboardFirstRow.add(shareContactButton);
 
-
-        } else {
-
-            keyboardFirstRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
-            keyboardFirstRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCBC " + languageElement.creditsViewNameText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
             keyboardRowList.add(keyboardSecondRow);
 
+            if (ButtonsType == BotConfig.ButtonsType.SETTINGS) {
+                keyboardFirstRow.removeAll(keyboardFirstRow);
+                keyboardSecondRow.removeAll(keyboardSecondRow);
+                keyboardThirdRow.removeAll(keyboardThirdRow);
+                keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
+                keyboardSecondRow.add(new KeyboardButton("\uD83C\uDF0D " + languageElement.languageText.trim()));
+                keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
+            }
+        } else {
             BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCBC " + languageElement.creditsViewNameText.trim()));
+            keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
+            keyboardRowList.add(keyboardSecondRow);
 
             switch (ButtonsType) {
                 case ACCOUNTS:
@@ -60,18 +71,10 @@ class BotButtonsConfig {
                 case CREDITS:
                     botInlineButtonsConfig.inlineKeyboardForCustomerCredits(sendMessage);
                     break;
-                case SETTINGS:
-                    keyboardFirstRow.removeAll(keyboardFirstRow);
-                    keyboardSecondRow.removeAll(keyboardSecondRow);
-                    keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
-                    keyboardSecondRow.add(new KeyboardButton("\uD83C\uDF0D " + languageElement.languageText.trim()));
-                    keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
-                    break;
                 default:
                     break;
             }
         }
-
         keyboardRowList.add(keyboardFirstRow);
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
     }

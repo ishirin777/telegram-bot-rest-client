@@ -13,11 +13,11 @@ import java.io.IOException;
 
 class CallBackResponse {
 
-    private final OkHttpGet okHttpGet = new OkHttpGet();
-    private final GsonBuilder gsonBuilder = new GsonBuilder();
-    private final Gson gson = gsonBuilder.create();
+    private final static OkHttpGet okHttpGet = new OkHttpGet();
+    private final static GsonBuilder gsonBuilder = new GsonBuilder();
+    private final static Gson gson = gsonBuilder.create();
 
-      EditMessageText editMessageText(long chat_id, long message_id, String answer) {
+      static EditMessageText editMessageText(long chat_id, long message_id, String answer) {
         EditMessageText editMessageText;
         editMessageText = new EditMessageText();
         editMessageText.setChatId(chat_id);
@@ -26,12 +26,12 @@ class CallBackResponse {
         return editMessageText;
     }
 
-      CustomerAccounts customerAccountsDB(SessionPhoneNumber sessionPhoneNumber) throws IOException {
+      static CustomerAccounts customerAccountsDB(SessionPhoneNumber sessionPhoneNumber) throws IOException {
         String response = okHttpGet.run(ApiRequest.getCustomerAccounts(sessionPhoneNumber.getPhoneNumber()));
         return gson.fromJson(response, CustomerAccounts[].class)[0];
     }
 
-      CustomerCreditsAmount customerCreditsAmountDB(SessionPhoneNumber sessionPhoneNumber) throws IOException {
+      static CustomerCreditsAmount customerCreditsAmountDB(SessionPhoneNumber sessionPhoneNumber) throws IOException {
         String response = okHttpGet.run(ApiRequest.getTotalCustomerCreditsAmount(sessionPhoneNumber.getPhoneNumber()));
         return gson.fromJson(response, CustomerCreditsAmount[].class)[0];
     }

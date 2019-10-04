@@ -13,6 +13,8 @@ public class Value {
     }
 
     private void setLangType(String langType) {
+
         this.langType = langType;
     }
+
 }
