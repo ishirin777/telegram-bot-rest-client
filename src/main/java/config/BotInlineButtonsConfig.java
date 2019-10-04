@@ -27,5 +27,4 @@ class BotInlineButtonsConfig {
         markupInline.setKeyboard(Collections.singletonList(rowInline));
         sendMessage.setReplyMarkup(markupInline);
     }
-
 }

@@ -35,5 +35,4 @@ class CallBackResponse {
         String response = okHttpGet.run(ApiRequest.getTotalCustomerCreditsAmount(sessionPhoneNumber.getPhoneNumber()));
         return gson.fromJson(response, CustomerCreditsAmount[].class)[0];
     }
-
 }

@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class CurrencyRatesContent {
 
-
    private WebClient webClient = new WebClient();
    {
       webClient.getOptions().setJavaScriptEnabled(false);

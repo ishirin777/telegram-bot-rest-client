@@ -16,5 +16,4 @@ public class LanguageValue {
 
         this.langType = langType;
     }
-
 }
