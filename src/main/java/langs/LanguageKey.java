@@ -1,10 +1,10 @@
 package langs;
 
-public class Key {
+public class LanguageKey {
 
     private String language;
 
-    public Key(String language) {
+    public LanguageKey(String language) {
         setLanguage(language);
     }
 

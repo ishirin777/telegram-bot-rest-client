@@ -1,10 +1,10 @@
 package langs;
 
-public class Value {
+public class LanguageValue {
 
     private String langType;
 
-    public Value(String langType) {
+    public LanguageValue(String langType) {
         setLangType(langType);
     }
 

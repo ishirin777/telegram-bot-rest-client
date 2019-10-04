@@ -9,9 +9,9 @@ import database.CurrencyRates;
 import database.CustomerAccounts;
 import database.CustomerCreditsAmount;
 import database.CustomerInfo;
-import langs.Key;
 import langs.LanguageElement;
-import langs.Value;
+import langs.LanguageKey;
+import langs.LanguageValue;
 import org.apache.shiro.session.Session;
 import org.telegram.telegrambots.meta.api.methods.ActionType;
 import org.telegram.telegrambots.meta.api.methods.send.SendChatAction;
@@ -34,9 +34,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
     private final OkHttpGet okHttpGet = new OkHttpGet();
     private final GsonBuilder gsonBuilder = new GsonBuilder();
     private final Gson gson = gsonBuilder.create();
-    private final Key key = new Key("lang");
-    private Value langType;
-    private final Key phoneStoreKey = new Key("phoneKey");
+    private final LanguageKey languageKey = new LanguageKey("lang");
+    private LanguageValue langType;
+    private final LanguageKey phoneStoreLanguageKey = new LanguageKey("phoneKey");
 
     public enum ButtonsType {
         NULL,
@@ -65,8 +65,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
         if (message != null && message.hasText()) {
             switch (message.getText()) {
                 case "\ud83c\udde6\ud83c\uddff Azərbaycan dili":
-                    session.ifPresent(value -> value.setAttribute(key, new Value("az")));
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("az")));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
@@ -74,8 +74,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     break;
 
                 case "\ud83c\uddec\ud83c\udde7 English":
-                    session.ifPresent(value -> value.setAttribute(key, new Value("en")));
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("en")));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
@@ -83,8 +83,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     break;
 
                 case "\ud83c\uddf7\ud83c\uddfa Русский":
-                    session.ifPresent(value -> value.setAttribute(key, new Value("ru")));
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("ru")));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
@@ -94,8 +94,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "/start":
                     var sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     try {
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                         if (sessionPhoneNumber.get().getPhoneNumber() != null) {
                             sessionPhoneNumber.get().setPhoneNumber(null);
                         }
@@ -112,8 +112,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCB8 Мои Счета":
 
                     sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.accountsTypesText, true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.ACCOUNTS);
@@ -124,8 +124,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCBC Мои Кредиты":
 
                     sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.creditsTypesText.trim(), true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.CREDITS);
@@ -135,7 +135,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCC8 Currency rates":
                 case "\uD83D\uDCC8 Курсы валют":
 
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     sendChatAction(update);
                     sendMsg(message, CurrencyRates.getCurrencyRates(langType.getLangType()), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
@@ -144,7 +144,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\u2699 Settings":
                 case "\u2699 Настройки":
 
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.selectAction, true, langType.getLangType(), null, ButtonsType.SETTINGS);
@@ -154,7 +154,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83C\uDF0D Language":
                 case "\uD83C\uDF0D Язык":
 
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.chooseTheLanguage, false, langType.getLangType(), null, ButtonsType.NULL);
@@ -164,7 +164,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDCDE Contact the bank":
                 case "\uD83D\uDCDE Связаться с банком":
 
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), null, ButtonsType.SETTINGS);
@@ -174,7 +174,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "\uD83D\uDD19 Back":
                 case "\uD83D\uDD19 Назад":
 
-                    session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
                     sendMsg(message, langElements.backFunction.trim(), true, langType.getLangType(), null, ButtonsType.NULL);
@@ -183,8 +183,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 default:
                     sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     try {
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
                         sendChatAction(update);
 
                         if (langType == null) {
@@ -206,7 +206,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     }
                     break;
             }
-        } else if (update.hasCallbackQuery()) {
+        }
+        else if (update.hasCallbackQuery()) {
             String call_data = update.getCallbackQuery().getData();
             long message_id = update.getCallbackQuery().getMessage().getMessageId();
             long chat_id = update.getCallbackQuery().getMessage().getChatId();
@@ -217,8 +218,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "AZN_Account":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
 
                         CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
                         callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getAZNAccountsFromDB(langType.getLangType()));
@@ -231,8 +232,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "USD_Account":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
 
                         CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
                         callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getUSDAccountsFromDB(langType.getLangType()));
@@ -245,8 +246,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "EUR_Account":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
 
                         CustomerAccounts answer = CallBackResponse.customerAccountsDB(sessionPhoneNumber.get());
                         callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getEURAccountsFromDB(langType.getLangType()));
@@ -259,8 +260,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "AZN_Credits":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
 
                         CustomerCreditsAmount answer = CallBackResponse.customerCreditsAmountDB(sessionPhoneNumber.get());
                         callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInAZN(langType.getLangType()));
@@ -272,8 +273,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                 case "USD_Credits":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
-                        session.ifPresent(value -> langType = (Value) value.getAttribute(key));
-                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreKey)));
+                        session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                        session.ifPresent(value -> sessionPhoneNumber.set((SessionPhoneNumber) value.getAttribute(phoneStoreLanguageKey)));
 
                         CustomerCreditsAmount answer = CallBackResponse.customerCreditsAmountDB(sessionPhoneNumber.get());
                         callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, answer.getTotalCreditsAmountInUSD(langType.getLangType()));
@@ -292,8 +293,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
 
             var sessionPhoneNumber = new SessionPhoneNumber();
             sessionPhoneNumber.setPhoneNumber(customerPhoneNumber);
-            session.ifPresent(value -> value.setAttribute(phoneStoreKey, sessionPhoneNumber));
-            session.ifPresent(value -> langType = (Value) value.getAttribute(key));
+            session.ifPresent(value -> value.setAttribute(phoneStoreLanguageKey, sessionPhoneNumber));
+            session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
             langElements = new LanguageElement(langType.getLangType());
             sendChatAction(update);

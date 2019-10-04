@@ -11,11 +11,11 @@ public class Main {
     public static final String BOT_TOKEN = "804230862:AAEwBq4vovgZP7Ee8N9Hu5pnvT5bPJ3nOOk";
 
     public static void main(String[] args) {
+
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
         try {
             botsApi.registerBot(new BotConfig());
-
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
