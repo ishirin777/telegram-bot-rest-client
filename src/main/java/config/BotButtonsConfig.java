@@ -50,7 +50,7 @@ class BotButtonsConfig {
             keyboardSecondRow.add(new KeyboardButton("\uD83C\uDFDB " + languageElement.bankBranches.trim()));
 //            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCF0 " + languageElement.bankNews.trim()));
             keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
-            keyboardThirdRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
+            keyboardThirdRow.add(new KeyboardButton("\uD83D\uDCB2 " + languageElement.currencyRatesText.trim()));
             keyboardThirdRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
             keyboardRowList.add(keyboardSecondRow);
             keyboardRowList.add(keyboardThirdRow);
@@ -70,7 +70,7 @@ class BotButtonsConfig {
 
         else {
             keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCBC " + languageElement.creditsViewNameText.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB3 " + languageElement.creditsViewNameText.trim()));
             keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
             keyboardRowList.add(keyboardSecondRow);
 

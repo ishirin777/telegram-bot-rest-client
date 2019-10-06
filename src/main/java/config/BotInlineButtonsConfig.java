@@ -33,9 +33,9 @@ class BotInlineButtonsConfig extends InlineKeyboardMarkup {
     }
 
     void inlineKeyboardForBankBranches(SendMessage sendMessage, LanguageElement languageElement) {
-        rowInline.add(new InlineKeyboardButton().setText(languageElement.bankBakuBranchesViewNameText).setCallbackData("Baku_Branches"));
-        rowInline.add(new InlineKeyboardButton().setText(languageElement.bankRegionalBranchesViewNameText).setCallbackData("Regional_Branches"));
-        markupInline.setKeyboard(Collections.singletonList(rowInline));
+        rowList.add(Collections.singletonList(new InlineKeyboardButton().setText(languageElement.bankBakuBranchesViewNameText.trim()).setCallbackData("Baku_Branches")));
+        rowList.add(Collections.singletonList(new InlineKeyboardButton().setText(languageElement.bankRegionalBranchesViewNameText.trim()).setCallbackData("Regional_Branches")));
+        markupInline.setKeyboard(rowList);
         sendMessage.setReplyMarkup(markupInline);
     }
 
