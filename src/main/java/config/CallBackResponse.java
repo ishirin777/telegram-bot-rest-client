@@ -17,7 +17,7 @@ class CallBackResponse {
     private final static GsonBuilder gsonBuilder = new GsonBuilder();
     private final static Gson gson = gsonBuilder.create();
 
-      static EditMessageText editMessageText(long chat_id, long message_id, String answer) {
+    static EditMessageText editMessageText(long chat_id, long message_id, String answer) {
         EditMessageText editMessageText;
         editMessageText = new EditMessageText();
         editMessageText.setChatId(chat_id);

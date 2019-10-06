@@ -37,6 +37,24 @@ public class LanguageElement {
     public String backFunction;
     public String chooseTheLanguage;
     public String bankPhoneNumbers;
+    public String bankBranches;
+    public String bankBakuBranchesViewNameText;
+    public String bankRegionalBranchesViewNameText;
+    public String bankBranchesChooseTypeText;
+//    public String bankNews;
+
+    public String bakuHeadBranchAddress;
+    public String individualBankingAddress;
+    public String bridgePlazaAddress;
+    public String portBakuAddress;
+    public String landmarkAddress;
+    public String shuvalanAddress;
+    public String twentyEightAddress;
+    public String whiteCityAddress;
+
+    public String ganjaBranchAddress;
+    public String zagatalaBranchAddress;
+    public String gubaBranchAddress;
 
     public LanguageElement(String lang) {
         try {
@@ -62,6 +80,22 @@ public class LanguageElement {
             backFunction = getValue("BackFunction", xmlParser(lang));
             chooseTheLanguage = getValue("ChooseTheLanguage", xmlParser(lang));
             bankPhoneNumbers = getValue("BankPhoneNumbers", xmlParser(lang));
+            bankBranches = getValue("BankBranches", xmlParser(lang));
+//            bankNews = getValue("BankNews", xmlParser(lang));
+            bankBakuBranchesViewNameText = getValue("BankBakuBranchesViewNameText",xmlParser(lang));
+            bankRegionalBranchesViewNameText = getValue("BankRegionalBranchesViewNameText", xmlParser(lang));
+            bankBranchesChooseTypeText = getValue("BankBranchesChooseTypeText", xmlParser(lang));
+            bakuHeadBranchAddress = getValue("BakuHeadBranchAddress", xmlParser(lang));
+            individualBankingAddress = getValue("IndividualBankingAddress", xmlParser(lang));
+            bridgePlazaAddress = getValue("BridgePlazaAddress", xmlParser(lang));
+            portBakuAddress = getValue("PortBakuAddress", xmlParser(lang));
+            landmarkAddress = getValue("LandmarkAddress", xmlParser(lang));
+            shuvalanAddress = getValue("ShuvalanAddress", xmlParser(lang));
+            twentyEightAddress = getValue("TwentyEightMayAddress", xmlParser(lang));
+            whiteCityAddress = getValue("WhiteCityAddress",xmlParser(lang));
+            ganjaBranchAddress = getValue("GanjaBranchAddress", xmlParser(lang));
+            zagatalaBranchAddress = getValue("ZagatalaBranchAddress", xmlParser(lang));
+            gubaBranchAddress = getValue("GubaBranchAddress", xmlParser(lang));
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }

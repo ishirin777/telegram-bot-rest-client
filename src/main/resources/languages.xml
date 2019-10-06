@@ -97,6 +97,70 @@
             &#10;Korporativ müştərilər üçün:&#10;8123 / (+994 12) 496 50 04
             &#10;Fərdi müştərilər üçün:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
+
+        <BankBranches>
+            Filiallar
+        </BankBranches>
+
+        <BankBakuBranchesViewNameText>
+            Bakı
+        </BankBakuBranchesViewNameText>
+
+        <BankRegionalBranchesViewNameText>
+            Regionlar üzrə
+        </BankRegionalBranchesViewNameText>
+
+        <BankBranchesChooseTypeText>
+            Filial növünü seçin
+        </BankBranchesChooseTypeText>
+
+        <BakuHeadBranchAddress>
+            "Baş ofis" Biznes Mərkəzi&#10;Yusif Məmmədəliyev küç.,13&#10;Bakı, AZ1005, Azərbaycan&#10;Tel.: *9123&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </BakuHeadBranchAddress>
+
+        <IndividualBankingAddress>
+            "Fərdi Bankçılıq"&#10;Yusif Məmmədəliyev küç.,12&#10;Bakı, AZ1005, Azərbaycan&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </IndividualBankingAddress>
+
+        <BridgePlazaAddress>
+            “Bridge Plaza” Biznes Mərkəzi&#10;Bakixanov küç. 6&#10;Bakı, AZ1065, Azərbaycan&#10;Tel.: (+99412) 499 85 99&#10;Fax: (+99412) 499 85 88
+        </BridgePlazaAddress>
+
+        <PortBakuAddress>
+            "Port Baku” Biznes Mərkəzi&#10;Neftçilər pr. 153&#10;Bakı, AZ1010, Azərbaycan&#10;Tel.: (+99412) 464 05 00&#10;Fax: (+99412) 464 05 10
+        </PortBakuAddress>
+
+        <LandmarkAddress>
+            Nizami küçəsi 96E Landmark I&#10;Bakı, AZ1010, Azərbaycan&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </LandmarkAddress>
+
+        <ShuvalanAddress>
+            “Şüvəlan Park” Ticarət Mərkəzi&#10;Şüvəlan qəs., A. İldırım küç.68,&#10;Bakı, AZ1150, Azərbaycan&#10;Tel.: (+99412) 496 50 20 &#10;Fax: (+99412) 496 50 10
+        </ShuvalanAddress>
+
+        <TwentyEightMayAddress>
+            28 May küç., 46&#10;Bakı, AZ1010, Azərbaycan
+        </TwentyEightMayAddress>
+
+        <WhiteCityAddress>
+            “Bulvar” Otel, Xəqani Rüstəmov küç., 4C&#10;Bakı, AZ1025, Azərbaycan
+        </WhiteCityAddress>
+
+        <GanjaBranchAddress>
+            "Gəncə" filialı&#10;Nizami rayonu, Atatürk pr., 242&#10;Gəncə şəhəri, Azərbaycan&#10;Tel.: (+99422) 266 29 70&#10;Tel.: (+99422) 266 29 71&#10;Fax: (+99422) 266 29 72
+        </GanjaBranchAddress>
+
+        <ZagatalaBranchAddress>
+            "Zaqatala" filialı&#10;F. Əmirov küç., 57A&#10;Zaqatala şəhəri, Azərbaycan&#10;Tel.: (+99424) 22 42 000&#10;Fax: (+99424) 22 42 003
+        </ZagatalaBranchAddress>
+
+        <GubaBranchAddress>
+            "Quba" filialı&#10;Xurşidbanu Natəvan küç., 35&#10;Quba şəhəri, Azərbaycan&#10;Tel.: (+99423) 335 56 22&#10;Fax: (+99412) 496 50 10
+        </GubaBranchAddress>
+
+        <BankNews>
+            Bank xəbərləri
+        </BankNews>
     </az>
 
     <en>
@@ -196,6 +260,71 @@
             &#10;For Corporate Customers:&#10;8123 / (+994 12) 496 50 04
             &#10;For Individual Customers:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
+
+        <BankBranches>
+            Branches
+        </BankBranches>
+
+        <BankBakuBranchesViewNameText>
+            Baku
+        </BankBakuBranchesViewNameText>
+
+        <BankRegionalBranchesViewNameText>
+            Regional
+        </BankRegionalBranchesViewNameText>
+
+        <BankBranchesChooseTypeText>
+            Choose the branch type
+        </BankBranchesChooseTypeText>
+
+        <BakuHeadBranchAddress>
+            Head office13,&#10;Yusif Mammadaliyev Street&#10;Baku, AZ1005, Azerbaijan&#10;Tel.: *9123&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </BakuHeadBranchAddress>
+
+        <IndividualBankingAddress>
+            "Individual Banking Service Division"&#10;12, Yusif Mammadaliyev Street&#10;Baku, AZ1005, Azerbaijan&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </IndividualBankingAddress>
+
+        <BridgePlazaAddress>
+            "Bridge Plaza" Business Center&#10;6, Bakikhanov Street&#10;Baku, AZ1065, Azerbaijan&#10;Tel.: (+99412) 499 85 99&#10;Fax: (+99412) 499 85 88
+        </BridgePlazaAddress>
+
+        <PortBakuAddress>
+            "Port Baku" Business Center&#10;153, Neftchiler Ave&#10;Baku, AZ1010, Azerbaijan&#10;Tel.: (+99412) 464 05 00&#10;Fax: (+99412) 464 05 10
+        </PortBakuAddress>
+
+        <LandmarkAddress>
+            Landmark I, 96E, Nizami Street&#10;Baku, AZ1010, Azerbaijan&#10;Tel.: (+99412) 496 50 00&#10;Fax: (+99412) 496 50 10
+        </LandmarkAddress>
+
+        <ShuvalanAddress>
+            "Shuvelan Park" Shopping Center&#10;68, A. Ildirim Street, Shuvelan settlement,&#10;Baku, AZ1150, Azerbaijan&#10;Tel.: (+99412) 496 50 20&#10;Fax: (+99412) 496 50 10
+        </ShuvalanAddress>
+
+        <TwentyEightMayAddress>
+            46, 28 May Street&#10;Baku, AZ1010, Azerbaijan
+        </TwentyEightMayAddress>
+
+        <WhiteCityAddress>
+            “Boulevard” Hotel, 4C, Khagani Rustamov Street&#10;Baku, AZ1025, Azerbaijan
+        </WhiteCityAddress>
+
+        <GanjaBranchAddress>
+            "Ganja" Business Center&#10;Nizami district, Ataturk ave., 242&#10;Ganja city, Azerbaijan&#10;Tel.: (+99422) 266 29 70&#10;Tel.: (+99422) 266 29 71&#10;Fax: (+99422) 266 29 72
+        </GanjaBranchAddress>
+
+        <ZagatalaBranchAddress>
+            “Zagatala” Business Center&#10;F. Amirov str. 57A&#10;Zagatala city, Azerbaijan&#10;Tel.: (+99424) 22 42 000&#10;Fax: (+99424) 22 42 003
+        </ZagatalaBranchAddress>
+
+        <GubaBranchAddress>
+            Khurshidbanu Natavan st., 35&#10;Guba city, Azerbaijan&#10;Tel.: (+99423) 335 56 22&#10;Fax: (+99412) 496 50 10
+        </GubaBranchAddress>
+
+        <BankNews>
+            Bank news
+        </BankNews>
+
     </en>
 
     <ru>
@@ -295,5 +424,69 @@
             &#10;Для корпоративных клиентов:&#10;8123 / (+994 12) 496 50 04
             &#10;Для индивидуальных клиентов:&#10;9123 / (+994 12) 496 50 00
         </BankPhoneNumbers>
+
+        <BankBranches>
+            Филиалы
+        </BankBranches>
+
+        <BankBakuBranchesViewNameText>
+            Баку
+        </BankBakuBranchesViewNameText>
+
+        <BankRegionalBranchesViewNameText>
+            Региональный
+        </BankRegionalBranchesViewNameText>
+
+        <BankBranchesChooseTypeText>
+            Выберите тип филиала
+        </BankBranchesChooseTypeText>
+
+        <BakuHeadBranchAddress>
+            Головной офис&#10;Ул. Юсифа Мамедалиева 13&#10;Баку, AZ1005, Азербайджан&#10;Тел.: *9123&#10;Тел.: (+99412) 496 50 00&#10;Факс: (+99412) 496 50 10
+        </BakuHeadBranchAddress>
+
+        <IndividualBankingAddress>
+            Индивидуальное банковское обслуживание&#10;Ул. Юсифа Мамедалиева, 12&#10;Баку, AZ1005, Азербайджан&#10;Тел.: (+99412) 496 50 00&#10;Факс: (+99412) 496 50 10
+        </IndividualBankingAddress>
+
+        <BridgePlazaAddress>
+            Бизнес Центр "Бридж Плаза"&#10;Ул. Бакиханова 6&#10;Баку, AZ1065, Азербайджан&#10;Тел.: (+99412) 499 85 99&#10;Факс: (+99412) 499 85 88
+        </BridgePlazaAddress>
+
+        <PortBakuAddress>
+            Бизнес Центр "Порт Баку"&#10;Пр-т. Нефтчиляр 153&#10;Баку, AZ1010, Азербайджан&#10;Тел.: (+99412) 464 05 00&#10;Факс: (+99412) 464 05 10
+        </PortBakuAddress>
+
+        <LandmarkAddress>
+            Ул. Низами 96E, Landmark I&#10;Баку, AZ1010, Азербайджан&#10;Тел.: (+99412) 496 50 00&#10;Факс: (+99412) 496 50 10
+        </LandmarkAddress>
+
+        <ShuvalanAddress>
+            Торговый центр «Shuvelan Park»&#10;Ул. А. Илдырыма, поселок Шувелан&#10;Баку, АZ1150, Азербайджан&#10;Тел.: (+99412) 496 50 20&#10;Факс: (+99412) 496 50 10
+        </ShuvalanAddress>
+
+        <TwentyEightMayAddress>
+            Ул. 28 Мая, 46&#10;Баку, AZ1010, Азербайджан
+        </TwentyEightMayAddress>
+
+        <WhiteCityAddress>
+            ”Бульвар” Отель, Ул. Хагани Рустамова, 4С&#10;Баку, AZ1025, Азербайджан
+        </WhiteCityAddress>
+
+        <GanjaBranchAddress>
+            Бизнес-центр "Гянджа"&#10;Низаминский район, пр-т Ататюрка 242&#10;Гянджа, Азербайджан&#10;Тел.: (+99422) 266 29 70&#10;Тел.: (+99422) 266 29 71&#10;Факс: (+99422) 266 29 72
+        </GanjaBranchAddress>
+
+        <ZagatalaBranchAddress>
+            Бизнес-центр "Загатала"&#10;Ул. Ф. Амирова 57А&#10;Загатала, Азербайджан&#10;Тел.: (+99424) 22 42 000&#10;Факс: (+99424) 22 42 003
+        </ZagatalaBranchAddress>
+
+        <GubaBranchAddress>
+            Ул. Хуршидбану Натаван 35&#10;Губа, Азербайджан&#10;Тел.: (+99423) 335 56 22&#10;Факс: (+99412) 496 50 10
+        </GubaBranchAddress>
+
+        <BankNews>
+            Новости банка
+        </BankNews>
     </ru>
 </language>

@@ -7,8 +7,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Main {
 
-    public static final String BOT_USERNAME = "DemoInternetBankingBot";
-    public static final String BOT_TOKEN = "804230862:AAEwBq4vovgZP7Ee8N9Hu5pnvT5bPJ3nOOk";
+    public static final String BOT_USERNAME = "DemoOnlineBankBot";
+    public static final String BOT_TOKEN = "893987511:AAHdNMkGbRWN_wF5NcQtcNmcEP7x7lv4S0o";
 
     public static void main(String[] args) {
 

@@ -2,6 +2,7 @@ package config;
 
 import langs.LanguageElement;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
@@ -37,7 +38,8 @@ class BotButtonsConfig {
             return;
         }
         LanguageElement languageElement = new LanguageElement(lang);
-
+        BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();
+        EditMessageText editMessageText = new EditMessageText();
 
         if (phoneNum == null) {
 
@@ -45,9 +47,13 @@ class BotButtonsConfig {
                     .setRequestContact(true);
             keyboardFirstRow.add(shareContactButton);
 
-            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
-            keyboardSecondRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83C\uDFDB " + languageElement.bankBranches.trim()));
+//            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCF0 " + languageElement.bankNews.trim()));
+            keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
+            keyboardThirdRow.add(new KeyboardButton("\uD83D\uDCC8 " + languageElement.currencyRatesText.trim()));
+            keyboardThirdRow.add(new KeyboardButton("\u2699 " + languageElement.generalSettings.trim()));
             keyboardRowList.add(keyboardSecondRow);
+            keyboardRowList.add(keyboardThirdRow);
 
             if (ButtonsType == BotConfig.ButtonsType.SETTINGS) {
                 keyboardFirstRow.removeAll(keyboardFirstRow);
@@ -55,10 +61,14 @@ class BotButtonsConfig {
                 keyboardThirdRow.removeAll(keyboardThirdRow);
                 keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));
                 keyboardSecondRow.add(new KeyboardButton("\uD83C\uDF0D " + languageElement.languageText.trim()));
-                keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCDE " + languageElement.contactTheBank.trim()));
             }
-        } else {
-            BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();
+
+             if(ButtonsType == BotConfig.ButtonsType.BRANCHES){
+                botInlineButtonsConfig.inlineKeyboardForBankBranches(sendMessage,languageElement);
+            }
+        }
+
+        else {
             keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCB8 " + languageElement.accountsViewNameText.trim()));
             keyboardSecondRow.add(new KeyboardButton("\uD83D\uDCBC " + languageElement.creditsViewNameText.trim()));
             keyboardFirstRow.add(new KeyboardButton("\uD83D\uDD19 " + languageElement.backFunction.trim()));

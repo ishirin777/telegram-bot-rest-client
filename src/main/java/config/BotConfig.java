@@ -22,6 +22,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.session.TelegramLongPollingSessionBot;
 import starter.Main;
+import webclient.BankNews;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -43,6 +44,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
         ACCOUNTS,
         CREDITS,
         SETTINGS,
+        BRANCHES
     }
 
     private void sendMsg(Message message, String text, boolean langSelected, String lang, String phoneNum, ButtonsType buttonsType) {
@@ -131,6 +133,29 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.creditsTypesText.trim(), true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.CREDITS);
                     break;
 
+
+                case "\uD83C\uDFDB Filiallar":
+                case "\uD83C\uDFDB Branches":
+                case "\uD83C\uDFDB Филиалы":
+
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    sendChatAction(update);
+                    sendMsg(message, langElements.bankBranchesChooseTypeText, true, langType.getLangType(), null, ButtonsType.BRANCHES);
+                    break;
+
+                case "\uD83D\uDCF0 Bank xəbərləri":
+                case "\uD83D\uDCF0 Bank news":
+                case "\uD83D\uDCF0 Новости банка":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    sendChatAction(update);
+                    try {
+                        sendMsg(message, BankNews.getBankNews(langType.getLangType()), true, langType.getLangType(), null, ButtonsType.NULL);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
                 case "\uD83D\uDCC8 Valyuta məzənnələri":
                 case "\uD83D\uDCC8 Currency rates":
                 case "\uD83D\uDCC8 Курсы валют":
@@ -167,7 +192,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
                     sendChatAction(update);
-                    sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), null, ButtonsType.SETTINGS);
+                    sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
                 case "\uD83D\uDD19 Geri":
@@ -206,13 +231,13 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     }
                     break;
             }
-        }
-        else if (update.hasCallbackQuery()) {
+        } else if (update.hasCallbackQuery()) {
             String call_data = update.getCallbackQuery().getData();
             long message_id = update.getCallbackQuery().getMessage().getMessageId();
             long chat_id = update.getCallbackQuery().getMessage().getChatId();
             EditMessageText callbackMessage;
             AtomicReference<SessionPhoneNumber> sessionPhoneNumber;
+            BotInlineButtonsConfig botInlineButtonsConfig = new BotInlineButtonsConfig();
 
             switch (call_data) {
                 case "AZN_Account":
@@ -270,6 +295,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                         e.printStackTrace();
                     }
                     break;
+
                 case "USD_Credits":
                     try {
                         sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
@@ -283,6 +309,166 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                         e.printStackTrace();
                     }
                     break;
+
+                case "Baku_Branches":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.selectAction);
+
+                    try {
+                        execute(callbackMessage);
+                        execute(botInlineButtonsConfig.inlineKeyboardForBakuBranch(callbackMessage));
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Regional_Branches":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.selectAction);
+
+                    try {
+                        execute(callbackMessage);
+                        execute(botInlineButtonsConfig.inlineKeyboardForRegionalBranches(callbackMessage));
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Head_Office":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.bakuHeadBranchAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Individual_Banking":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.individualBankingAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Bridge_Plaza":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.bridgePlazaAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Port_Baku":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.portBakuAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Landmark":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.landmarkAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Shuvalan":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.shuvalanAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "28_May":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.twentyEightAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "White_City":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.whiteCityAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Ganja_Branch":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.ganjaBranchAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "Zagatala_Branch":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.zagatalaBranchAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+
+                case "Guba_Branch":
+                    session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
+                    langElements = new LanguageElement(langType.getLangType());
+                    callbackMessage = CallBackResponse.editMessageText(chat_id, message_id, langElements.gubaBranchAddress);
+
+                    try {
+                        execute(callbackMessage);
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
                 default:
                     break;
             }
