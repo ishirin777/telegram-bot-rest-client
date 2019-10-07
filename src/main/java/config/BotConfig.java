@@ -29,6 +29,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static config.SwitchCaseStrings.*;
+
 
 public class BotConfig extends TelegramLongPollingSessionBot {
 
@@ -66,7 +68,8 @@ public class BotConfig extends TelegramLongPollingSessionBot {
         LanguageElement langElements;
         if (message != null && message.hasText()) {
             switch (message.getText()) {
-                case "\ud83c\udde6\ud83c\uddff Azərbaycan dili":
+
+                case languageAz:
                     session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("az")));
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
@@ -75,7 +78,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.authenticationText, true, "az", null, ButtonsType.NULL);
                     break;
 
-                case "\ud83c\uddec\ud83c\udde7 English":
+                case languageEn:
                     session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("en")));
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
@@ -84,7 +87,7 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.authenticationText, true, "en", null, ButtonsType.NULL);
                     break;
 
-                case "\ud83c\uddf7\ud83c\uddfa Русский":
+                case languageRu:
                     session.ifPresent(value -> value.setAttribute(languageKey, new LanguageValue("ru")));
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
 
@@ -109,9 +112,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.startText, false, null, null, ButtonsType.NULL);
                     break;
 
-                case "\uD83D\uDCB8 Hesablarım":
-                case "\uD83D\uDCB8 My Accounts":
-                case "\uD83D\uDCB8 Мои Счета":
+                case myAccountsAz:
+                case myAccountsEn:
+                case myAccountsRu:
 
                     sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
@@ -121,9 +124,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.accountsTypesText.trim(), true, langType.getLangType(), sessionPhoneNumber.get().getPhoneNumber(), ButtonsType.ACCOUNTS);
                     break;
 
-                case "\uD83D\uDCB3 Kreditlərim":
-                case "\uD83D\uDCB3 My Credits":
-                case "\uD83D\uDCB3 Мои Кредиты":
+                case myCreditsAz:
+                case myCreditsEn:
+                case myCreditsRu:
 
                     sessionPhoneNumber = new AtomicReference<>(new SessionPhoneNumber());
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
@@ -134,9 +137,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     break;
 
 
-                case "\uD83C\uDFDB Filiallar":
-                case "\uD83C\uDFDB Branches":
-                case "\uD83C\uDFDB Филиалы":
+                case branchesAz:
+                case branchesEn:
+                case branchesRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
@@ -144,9 +147,10 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.bankBranchesChooseTypeText, true, langType.getLangType(), null, ButtonsType.BRANCHES);
                     break;
 
-                case "\uD83D\uDCF0 Bank xəbərləri":
-                case "\uD83D\uDCF0 Bank news":
-                case "\uD83D\uDCF0 Новости банка":
+                case bankNewsAz:
+                case bankNewsEn:
+                case bankNewsRu
+                        :
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     sendChatAction(update);
                     try {
@@ -156,18 +160,18 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     }
                     break;
 
-                case "\uD83D\uDCB2 Valyuta məzənnələri":
-                case "\uD83D\uDCB2 Currency rates":
-                case "\uD83D\uDCB2 Курсы валют":
+                case currencyRatesAz:
+                case currencyRatesEn:
+                case currencyRatesRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     sendChatAction(update);
                     sendMsg(message, CurrencyRates.getCurrencyRates(langType.getLangType()), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
-                case "\u2699 Tənzimləmələr":
-                case "\u2699 Settings":
-                case "\u2699 Настройки":
+                case settingsAz:
+                case settingsEn:
+                case settingsRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
@@ -175,9 +179,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.selectAction, true, langType.getLangType(), null, ButtonsType.SETTINGS);
                     break;
 
-                case "\uD83C\uDF0D Dil":
-                case "\uD83C\uDF0D Language":
-                case "\uD83C\uDF0D Язык":
+                case changeLanguageAz:
+                case changeLanguageEn:
+                case changeLanguageRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
@@ -185,9 +189,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.chooseTheLanguage, false, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
-                case "\uD83D\uDCDE Bankla əlaqə":
-                case "\uD83D\uDCDE Contact the bank":
-                case "\uD83D\uDCDE Связаться с банком":
+                case contactTheBankAz:
+                case contactTheBankEn:
+                case contactTheBankRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
@@ -195,9 +199,9 @@ public class BotConfig extends TelegramLongPollingSessionBot {
                     sendMsg(message, langElements.bankPhoneNumbers.trim(), true, langType.getLangType(), null, ButtonsType.NULL);
                     break;
 
-                case "\uD83D\uDD19 Geri":
-                case "\uD83D\uDD19 Back":
-                case "\uD83D\uDD19 Назад":
+                case backFunctionAz:
+                case backFunctionEn:
+                case backFunctionRu:
 
                     session.ifPresent(value -> langType = (LanguageValue) value.getAttribute(languageKey));
                     langElements = new LanguageElement(langType.getLangType());
