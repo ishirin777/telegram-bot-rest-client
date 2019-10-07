@@ -41,7 +41,4 @@ class SwitchCaseStrings {
     static final String backFunctionAz = "\uD83D\uDD19 Geri";
     static final String backFunctionEn = "\uD83D\uDD19 Back";
     static final String backFunctionRu = "\uD83D\uDD19 Назад";
-
-
-
 }
